@@ -10,7 +10,7 @@ export default function Home() {
  return (
   <div className={styles.container}>
    <Head>
-    <title>Create Next App</title>
+    <title>Fast Feedback</title>
     <link rel="icon" href="/favicon.ico" />
    </Head>
 
@@ -18,11 +18,13 @@ export default function Home() {
     <h1 className={styles.title}>fast feedback</h1>
 
     <p className={styles.description}>
-     Get started by editing <code className={styles.code}>pages/index.js</code>
+     Current user:<code>{auth.user ? auth.user.email : "None"}</code>
     </p>
-    <button onClick={(e) => auth.signinWithGithub()}>Sign in</button>
-    <div>{auth?.user?.email}</div>
-    {auth?.user && <button onClick={(e) => auth.signout()}>Sign out</button>}
+    {auth.user ? (
+     <button onClick={(e) => auth.signout()}></button>
+    ) : (
+     <button onClick={(e) => auth.signinWithGithub()}></button>
+    )}
    </main>
 
    <footer className={styles.footer}>
