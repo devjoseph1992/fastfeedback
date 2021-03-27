@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { useAuth } from "../lib/auth";
+import { useAuth } from "@/lib/auth";
+import { Button, Code, Heading, Text } from "@chakra-ui/react";
 
 export default function Home() {
  const auth = useAuth();
@@ -10,15 +11,15 @@ export default function Home() {
     <title>Fast Feedback</title>
    </Head>
    <main>
-    <h1>fast feedback</h1>
+    <Heading>fast feedback</Heading>
 
-    <p>
-     Current user:<code>{auth.user ? auth.user.email : "None"}</code>
-    </p>
+    <Text>
+     Current user:<Code>{auth.user ? auth.user.email : "None"}</Code>
+    </Text>
     {auth.user ? (
-     <button onClick={(e) => auth.signout()}>Sign out</button>
+     <Button onClick={(e) => auth.signout()}>Sign out</Button>
     ) : (
-     <button onClick={(e) => auth.signinWithGitHub()}>Sign in</button>
+     <Button onClick={(e) => auth.signinWithGitHub()}>Sign in</Button>
     )}
    </main>
   </div>
