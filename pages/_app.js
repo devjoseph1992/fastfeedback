@@ -1,4 +1,9 @@
-import { ChakraProvider, CSSReset } from "@chakra-ui/react";
+import {
+ ChakraProvider,
+ CSSReset,
+ ColorModeProvider,
+ useColorMode,
+} from "@chakra-ui/react";
 import { AuthProvider } from "@/lib/auth";
 import theme from "@/styles/theme";
 import { Global, css } from "@emotion/react";
@@ -6,7 +11,6 @@ import { Global, css } from "@emotion/react";
 const GlobalStyle = ({ children }) => {
  return (
   <>
-   <CSSReset />
    <Global
     styles={css`
      html {
@@ -26,10 +30,14 @@ const GlobalStyle = ({ children }) => {
 
 function MyApp({ Component, pageProps }) {
  return (
-  <ChakraProvider theme={theme}>
+  <ChakraProvider resetCSS theme={theme}>
    <AuthProvider>
     <GlobalStyle />
-    <Component {...pageProps} />
+    <ColorModeProvider
+     options={{ initialColorMode: "light", useColorMode: true }}
+    >
+     <Component {...pageProps} />
+    </ColorModeProvider>
    </AuthProvider>
   </ChakraProvider>
  );

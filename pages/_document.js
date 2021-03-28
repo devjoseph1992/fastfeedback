@@ -1,9 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ColorModeScript } from "@chakra-ui/react";
 
 class MyDocument extends Document {
  render() {
   return (
-   <Html>
+   <Html lang="en">
     <Head>
      {/* <title>Fast Feedback</title> */}
      <link rel="icon" href="/favicon.ico" />
@@ -14,6 +15,7 @@ class MyDocument extends Document {
      />
     </Head>
     <body>
+     <ColorModeScript />
      <Main />
      <NextScript />
     </body>
