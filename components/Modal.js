@@ -16,20 +16,22 @@ import {
 } from "@chakra-ui/react";
 import { createSite } from "@/lib/db";
 import { useAuth } from "@/lib/auth";
+import { mutate } from "swr";
 
-const AddSiteModal = () => {
+const AddSiteModal = ({ children }) => {
  const toast = useToast();
  const auth = useAuth();
  const { isOpen, onOpen, onClose } = useDisclosure();
-
  const { register, handleSubmit } = useForm();
- const onSubmit = ({ site, url }) => {
-  createSite({
+
+ const onSubmit = ({ name, url }) => {
+  const newSite = {
    authorId: auth.user.uid,
    createdAt: new Date().toISOString(),
-   site,
+   name,
    url,
-  });
+  };
+  createSite(newSite);
   toast({
    title: "Success.",
    description: "We've created your account for you.",
@@ -37,13 +39,22 @@ const AddSiteModal = () => {
    duration: 5000,
    isClosable: true,
   });
+  mutate("/api/sites", async (data) => {
+   return { sites: [...data.sites, newSite] };
+  }),
+   false;
   onClose();
  };
 
  return (
   <>
-   <Button onClick={onOpen} variant="solid" size="md" p={8} maxW="200px">
-    Add your first site
+   <Button
+    onClick={onOpen}
+    backgroundColor="gray.900"
+    color="white"
+    fontWeight="medium"
+   >
+    {children}
    </Button>
    <Modal isOpen={isOpen} onClose={onClose}>
     <ModalOverlay />
@@ -55,7 +66,7 @@ const AddSiteModal = () => {
        <FormLabel>Name</FormLabel>
        <Input
         placeholder="My site"
-        name="site"
+        name="name"
         ref={register({ required: true })}
         id="site"
         type="text"

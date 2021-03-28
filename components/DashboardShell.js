@@ -12,6 +12,7 @@ import {
 import { Logo } from "@/styles/icon";
 import DarkModeSwitch from "./DarkModeSwitch";
 import { useAuth } from "@/lib/auth";
+import AddSiteModal from "./Modal";
 
 const DashboardShell = ({ children }) => {
  const { user } = useAuth();
@@ -56,6 +57,10 @@ const DashboardShell = ({ children }) => {
        <BreadcrumbLink>Lorem Ipsum</BreadcrumbLink>
       </BreadcrumbItem>
      </Breadcrumb>
+     <Flex justifyContent="space-between">
+      <Heading mb={8}>My Sites</Heading>
+      <AddSiteModal>+ Add Site</AddSiteModal>
+     </Flex>
      <Heading mb={4}>Heading title</Heading>
      {children}
     </Flex>
