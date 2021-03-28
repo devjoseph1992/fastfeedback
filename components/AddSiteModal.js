@@ -22,7 +22,6 @@ const AddSiteModal = () => {
  const auth = useAuth();
  const { isOpen, onOpen, onClose } = useDisclosure();
 
- console.log(auth);
  const { register, handleSubmit } = useForm();
  const onSubmit = ({ site, url }) => {
   createSite({
