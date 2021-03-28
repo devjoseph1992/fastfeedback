@@ -12,12 +12,12 @@ const Home = () => {
     <title>Fast Feedback</title>
    </Head>
    <Flex as="main" direction="column" align="center" justify="center" h="100vh">
-    <Heading>fast feedback{auth.email}</Heading>
+    <Heading>fast feedback</Heading>
     <Logo color="black" w={6} h={6} />
     {auth.user ? (
      <Button
       as="a"
-      href="/sites"
+      href="/dashboard"
       backgroundColor="gray.900"
       color="white"
       fontWeight="medium"
@@ -29,7 +29,7 @@ const Home = () => {
        transform: "scale(0.95)",
       }}
      >
-      View Dashboard{auth.email}
+      View Dashboard
      </Button>
     ) : (
      <LoginButtons />
