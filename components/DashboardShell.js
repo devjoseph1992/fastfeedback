@@ -7,13 +7,14 @@ import {
  BreadcrumbItem,
  BreadcrumbLink,
  Heading,
+ Button,
 } from "@chakra-ui/react";
 import { Logo } from "@/styles/icon";
 import DarkModeSwitch from "./DarkModeSwitch";
 import { useAuth } from "@/lib/auth";
 
 const DashboardShell = ({ children }) => {
- const auth = useAuth();
+ const { user } = useAuth();
  return (
   <Flex flexDirection="column">
    <Flex
@@ -29,8 +30,12 @@ const DashboardShell = ({ children }) => {
      <Link>Site</Link>
     </Stack>
     <Flex justifyContent="flex-start" pr={4} alignItems="center">
-     <Link mr={4}>Account</Link>
-     <Avatar size="sm" mr={4} src={auth.user.photoUrl} />
+     {user && (
+      <Button variant="ghost" mr={2} onClick={() => signout()}>
+       Log Out
+      </Button>
+     )}
+     <Avatar size="sm" mr={4} src={user?.photoUrl} />
      <DarkModeSwitch />
     </Flex>
    </Flex>

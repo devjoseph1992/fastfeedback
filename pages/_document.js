@@ -6,7 +6,6 @@ class MyDocument extends Document {
   return (
    <Html lang="en">
     <Head>
-     {/* <title>Fast Feedback</title> */}
      <link rel="icon" href="/favicon.ico" />
      <link rel="preconnect" href="https://fonts.gstatic.com" />
      <link
